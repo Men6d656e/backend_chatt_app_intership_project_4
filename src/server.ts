@@ -29,7 +29,7 @@ const corsOptions: CorsOptions = {
     if (
       config.NODE_ENV === "development" ||
       !origin ||
-      config.WHITELIST_OPIGINS.includes(origin)
+      origin === 'https://frontend-chatt-app-internship-proje.vercel.app'
     ) {
       callbacl(null, true);
     } else {
