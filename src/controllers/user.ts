@@ -1,12 +1,10 @@
 import User from "../models/user.js";
 import type { Response, Request, CookieOptions } from "express";
 import { genrateJwtToken } from "../lib/jwt.js";
-import config from "../config/index.js";
-import bcrypt from "bcrypt";
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
-  secure: config.NODE_ENV === "production" ? true : false,
+  secure: true,
   sameSite: "none",
   maxAge: 1000 * 60 * 60 * 24,
 };
@@ -68,6 +66,8 @@ export const logout = async (req: Request, res: Response) => {
   res.cookie("jwtToken", "", {
     httpOnly: true,
     expires: new Date(Date.now() - 1000),
+    secure: true,
+    sameSite: "none",
   });
 
   res.status(200).json({
@@ -86,7 +86,7 @@ export const fetchfriend = async (req: Request, res: Response) => {
         message: "user not found",
       });
     }
-    const messages = 'akash';
+    const messages = "akash";
     res.status(200).json({
       success: true,
       message: "ok",
@@ -96,7 +96,7 @@ export const fetchfriend = async (req: Request, res: Response) => {
       },
     });
   } catch (error) {
-    console.log('Error in fetching the friend data',error);
+    console.log("Error in fetching the friend data", error);
     res.status(500).json({
       success: false,
       message: "request failed",

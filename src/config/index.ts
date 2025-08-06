@@ -27,13 +27,13 @@ if (!process.env.JWT_SECRET) {
 
 const config: AppConfig = {
   PORT: process.env.PORT!,
-  NODE_ENV: process.env.NODE_ENV! as "development" | "production",
+  NODE_ENV: process.env.NODE_ENV as "development" | "production",
   MONGO_URI: process.env.MONGO_URI,
   JWT_SECRET: process.env.JWT_SECRET as Secret,
   TOKEN_EXPIRY: (process.env.TOKEN_EXPIRY || "1d") as TokenExpiryType,
   WHITELIST_OPIGINS: process.env.WHITELIST_OPIGINS
     ? process.env.WHITELIST_OPIGINS!.split(",")
-    : ["http://localhost:3000"],
+    : ["https://frontend-chatt-app-internship-proje.vercel.app"],
   CLOUDENARY_CLOUD_NAME: process.env.CLOUDENARY_CLOUD_NAME!,
   API_KEY: process.env.API_KEY!,
   SECRET_KEY: process.env.SECRET_KEY!,
