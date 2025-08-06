@@ -13,19 +13,24 @@ const app = express();
 const server = http.createServer(app);
 const io = initializeSocketIO(server); // Pass the HTTP server to the Socket.IO setup
 // cors options
+// const corsOptions: CorsOptions = {
+//   origin(origin, callbacl) {
+//     if (
+//       config.NODE_ENV === "development" ||
+//       !origin ||
+//       origin === 'https://frontend-chatt-app-internship-proje.vercel.app'
+//     ) {
+//       callbacl(null, true);
+//     } else {
+//       // reject the request non-whitelist
+//       callbacl(new Error("Not allowed by CORS"), false);
+//       console.log(`Cors Error: ${origin} is not allowed by cors`);
+//     }
+//   },
+//   credentials: true,
+// };
 const corsOptions = {
-    origin(origin, callbacl) {
-        if (config.NODE_ENV === "development" ||
-            !origin ||
-            origin === 'https://frontend-chatt-app-internship-proje.vercel.app') {
-            callbacl(null, true);
-        }
-        else {
-            // reject the request non-whitelist
-            callbacl(new Error("Not allowed by CORS"), false);
-            console.log(`Cors Error: ${origin} is not allowed by cors`);
-        }
-    },
+    origin: config.WHITELIST_OPIGINS,
     credentials: true,
 };
 app.use(cors(corsOptions));
